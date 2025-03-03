@@ -1,17 +1,32 @@
-from flask import Flask, render_template, request, jsonify, Response
-
+from flask import Flask, render_template
+import pyodbc
 
 app = Flask(__name__)
 
 
 
+def get_connection():
+    conn = pyodbc.connect('Driver={SQL Server};'
+                          'Server=localhost\\SQLEXPRESS;'
+                          'Database=Optica_DB;'  # Cambia el nombre a tu base de datos
+                          'Trusted_Connection=yes;')
+    return conn
+
 @app.route('/')
 def index():
+    
+    
     return render_template('index.html')
 
 @app.route('/inventario')
 def inventario():
-    return render_template('inventario.html')
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT nombre, precio, modelo, cantidad, materiales FROM inventario")  # Ajusta con tu tabla y columnas
+    datos = cursor.fetchall()
+    conn.close()
+    
+    return render_template('inventario.html', datos=datos)
 
 @app.route('/productos')
 def productos():
