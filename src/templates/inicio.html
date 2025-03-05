@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Opticas Franklin</title>
+    <script src="https://kit.fontawesome.com/7f87e90d60.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../static/styles/navbar/navbar.css">
 </head>
 <body>
     <nav id="fullscreen-menu" class="hidden">
-        <ul>
-            <li><a href="{{ url_for('inventario') }}">inventario</a></li>
-            <li><a href="{{ url_for('productos') }}">productos</a></li>
-            <li><a href="{{ url_for('proveedores') }}">proveedores</a></li>
-            <li><a href="{{ url_for('remesa') }}">remesa</a></li>
-            <li><a href="{{ url_for('ventas') }}">ventas</a></li>
+        <div class="nav-logo">
+            <img src="../images/sunglasses_logo.png">
+            <span class="nav-titulo">
+                <h2 class="nav-titulo1">Opticas</h2>
+                <h2 class="nav-titulo2">Franklin</h2>
+            </span>
+        </div>
+        <ul class="nav-buttons">
+            <li class="nav-btn btn-inventario"><a href="{{ url_for('inventario') }}">
+                <i class="fa-solid fa-box"></i>
+                Inventario</a></li>
+            <li class="nav-btn btn-proveedores"><a href="{{ url_for('proveedores') }}">
+                <i class="fa-solid fa-truck"></i>
+                Proveedores</a></li>
+            <li class="nav-btn btn-ventanas"><a href="{{ url_for('ventas') }}">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                Ventas</a></li>
+            <li class="nav-btn btn-productos"><a href="{{ url_for('productos') }}">
+                <i class="fa-solid fa-truck"></i>
+                Productos</a></li>
+            <li class="nav-btn btn-remesas"><a href="{{ url_for('remesa') }}">
+                <i class="fa-solid fa-coins"></i>
+                Remesa</a></li>
             <li><button>Cerrar Sesión</button></li>
         </ul>
     </nav>
