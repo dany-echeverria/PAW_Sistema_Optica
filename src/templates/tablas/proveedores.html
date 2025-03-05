@@ -37,46 +37,15 @@
                 </tr>
             </thead>
             <tbody>
+                {% for dato in datos %}
                 <tr>
-                    <td>Fila 1, Col 1</td>
-                    <td>Fila 1, Col 2</td>
-                    <td>Fila 1, Col 3</td>
-                    <td>Fila 1, Col 4</td>
-                    <td>Fila 1, Col 5</td>
-                    <td>Fila 1, Col 6</td>
+                    <td>{{ dato[0] }}</td>  
+                    <td>{{ dato[1] }}</td>  
+                    <td>{{ dato[2] }}</td>
+                    <td>{{ dato[3] }}</td>
+                    <td>{{ dato[4] }}</td>
                 </tr>
-                <tr>
-                    <td>Fila 2, Col 1</td>
-                    <td>Fila 2, Col 2</td>
-                    <td>Fila 2, Col 3</td>
-                    <td>Fila 2, Col 4</td>
-                    <td>Fila 2, Col 5</td>
-                    <td>Fila 2, Col 6</td>
-                </tr>
-                <tr>
-                    <td>Fila 3, Col 1</td>
-                    <td>Fila 3, Col 2</td>
-                    <td>Fila 3, Col 3</td>
-                    <td>Fila 3, Col 4</td>
-                    <td>Fila 3, Col 5</td>
-                    <td>Fila 3, Col 6</td>
-                </tr>
-                <tr>
-                    <td>Fila 4, Col 1</td>
-                    <td>Fila 4, Col 2</td>
-                    <td>Fila 4, Col 3</td>
-                    <td>Fila 4, Col 4</td>
-                    <td>Fila 4, Col 5</td>
-                    <td>Fila 4, Col 6</td>
-                </tr>
-                <tr>
-                    <td>Fila 5, Col 1</td>
-                    <td>Fila 5, Col 2</td>
-                    <td>Fila 5, Col 3</td>
-                    <td>Fila 5, Col 4</td>
-                    <td>Fila 5, Col 5</td>
-                    <td>Fila 5, Col 6</td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </main>

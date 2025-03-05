@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/iniciarsesion/iniciarsesion.css') }}">
 </head>
 <body>
-    <nav id="fullscreen-menu" class="hidden">
-        <ul>
-            <li><a href="{{ url_for('inventario') }}">inventario</a></li>
-            <li><a href="{{ url_for('productos') }}">productos</a></li>
-            <li><a href="{{ url_for('proveedores') }}">proveedores</a></li>
-            <li><a href="{{ url_for('remesa') }}">remesa</a></li>
-            <li><a href="{{ url_for('ventas') }}">ventas</a></li>
-            <li><button>Cerrar Sesión</button></li>
-        </ul>
-    </nav>
+    
+    <main>
+        <form action="" method="post">
+            <h1>Iniciar Sesion</h1>
+            <label for="">Usuario</label>
+            <input type="text">
+            <label for="">Contraseña</label>
+            <input type="text">
+        </form>
+        <button>Inciar Sesion</button>
+    </main>
 </body>
 </html>

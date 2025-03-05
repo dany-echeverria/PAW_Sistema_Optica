@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/index.css">
+</head>
+<body>
+    <nav id="fullscreen-menu" class="hidden">
+        <ul>
+            <li><a href="{{ url_for('inventario') }}">inventario</a></li>
+            <li><a href="{{ url_for('productos') }}">productos</a></li>
+            <li><a href="{{ url_for('proveedores') }}">proveedores</a></li>
+            <li><a href="{{ url_for('remesa') }}">remesa</a></li>
+            <li><a href="{{ url_for('ventas') }}">ventas</a></li>
+            <li><button>Cerrar Sesión</button></li>
+        </ul>
+    </nav>
+</body>
+</html>
