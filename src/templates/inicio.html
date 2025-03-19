@@ -2,13 +2,21 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Bienvenido</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
-    <nav>
+    <nav id="fullscreen-menu" class="hidden">
         <ul>
-           <a href=""></a>
+            <li><a href="{{ url_for('inventario') }}">inventario</a></li>
+            <li><a href="{{ url_for('productos') }}">productos</a></li>
+            <li><a href="{{ url_for('proveedores') }}">proveedores</a></li>
+            <li><a href="{{ url_for('remesa') }}">remesa</a></li>
+            <li><a href="{{ url_for('ventas') }}">ventas</a></li>
+            <li><button>Cerrar Sesión</button></li>
         </ul>
+        <button class="btn-cerrarSesion">Cerrar Sesión</button>
     </nav>
     <a href="{{ url_for('verinformacion.ver_proveedores') }}"> Proveedores</a>
     <a href="{{ url_for('verinformacion.ver_remesas') }}"> remesas</a>
