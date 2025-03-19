@@ -18,7 +18,9 @@
              <input type="text" class="search-input" placeholder="Buscar...">
              <div class="button-container">
                  <button class="square-button">Actualizar</button>
-                 <button class="square-button">Crear</button>
+                 <a href="{{ url_for('create.agregar_venta') }}">
+                    <button>Crear</button>
+                </a>
                  <button class="square-button">Borrar</button>
                  <button class="square-button">Adelante</button>
                  <button class="square-button">Atras</button>
@@ -29,6 +31,7 @@
          <table class="table">
              <thead>
                  <tr>
+                    <th class="table-header">id_venta</th>
                      <th class="table-header">Paciente</th>
                      <th class="table-header">Graduacion</th>
                      <th class="table-header">Armason</th>
@@ -39,19 +42,22 @@
                  </tr>
              </thead>
              <tbody>
-                {% for dato in datos %}
+                {% for ventas in datos %}
                 <tr>
-                    <td>{{ dato[0] }}</td>  <!-- Primera columna (ID) -->
-                    <td>{{ dato[1] }}</td>  <!-- Segunda columna (Campo 1) -->
-                    <td>{{ dato[2] }}</td>
-                    <td>{{ dato[3] }}</td>
-                    <td>{{ dato[4] }}</td>
-                    <td>{{ dato[5] }}</td>
-                    <td>{{ dato[6] }}</td>  <!-- Tercera columna (Campo 2) -->
+                    <td>{{ ventas.Id_venta }}</td>  <!-- Primera columna (ID) -->
+                    <td>{{ ventas.Id_Paciente }}</td>  <!-- Segunda columna (Campo 1) -->
+                    <td>{{ ventas.Graduacion }}</td>
+                    <td>{{ ventas.Armason }}</td>
+                    <td>{{ ventas.Tratamiento }}</td>
+                    <td>{{ ventas.Anticipo }}</td>
+                    <td>{{ ventas.Adeudo }}</td>  <!-- Tercera columna (Campo 2) -->
+                    <td>{{ ventas.Fecha }}</td>  <!-- Tercera columna (Campo 2) -->
                 </tr>
                 {% endfor %}
              </tbody>
          </table>
      </main>
+     <a href="{{ url_for('bienvenida') }}">Regresar</a>
+
 </body>
 </html>

@@ -1,65 +1,32 @@
-from flask import Flask, render_template
-import pyodbc
+from flask import Flask, render_template, session, redirect, url_for
+from db import db
+from config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS
+from routes.create import create_bp
+from routes.verinformacion import verinformacion_bp
+from routes.auth import auth_bp
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
+app.secret_key = '1234'
 
+# Blueprints
+app.register_blueprint(create_bp, url_prefix='/crear')
+app.register_blueprint(verinformacion_bp, url_prefix='/ver')
+app.register_blueprint(auth_bp, url_prefix='/auth')
 
-
-def get_connection():
-    conn = pyodbc.connect('Driver={SQL Server};'
-                          'Server=localhost\\SQLEXPRESS;'
-                          'Database=Optica_DB;'  # Cambia el nombre a tu base de datos
-                          'Trusted_Connection=yes;')
-    return conn
+db.init_app(app)
 
 @app.route('/')
-def index():
-    
-    
-    return render_template('index.html')
+def home():
+    return redirect(url_for('inicio.login'))
 
-@app.route('/inventario')
-def inventario():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT nombre, precio, modelo, cantidad, materiales FROM inventario")  # Ajusta con tu tabla y columnas
-    datos = cursor.fetchall()
-    conn.close()
-    
-    return render_template('inventario.html', datos=datos)
-
-@app.route('/productos')
-def productos():
-    
-    return render_template('productos.html')
-
-@app.route('/proveedores')
-def proveedores():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT nombre, correo, direccion, telefono, producto FROM Proveedores")  # Ajusta con tu tabla y columnas
-    datos = cursor.fetchall()
-    conn.close()
-    return render_template('proveedores.html', datos = datos)
-
-@app.route('/remesa')
-def remesa():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT proveedor, codigoelemento, modelo, nombre, num_entradas, factura, fecha FROM remesa")  # Ajusta con tu tabla y columnas
-    datos = cursor.fetchall()
-    conn.close()
-    return render_template('remesa.html', datos = datos)
-
-@app.route('/ventas')
-def ventas():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT paciente, graduacion, armason, tratamiento, anticipo, adeudo, fecha FROM ventas")  # Ajusta con tu tabla y columnas
-    datos = cursor.fetchall()
-    conn.close()
-    return render_template('ventas.html', datos = datos)
-
+@app.route('/bienvenida')
+def bienvenida():
+    if 'usuario' in session:
+        return render_template('inicio.html')  # Página de bienvenida
+    else:
+        return redirect(url_for('auth.login'))
 
 if __name__ == '__main__':
     app.run(debug=True)

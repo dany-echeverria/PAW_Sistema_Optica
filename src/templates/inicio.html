@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <title>Bienvenido</title>
 </head>
 <body>
-    <nav id="fullscreen-menu" class="hidden">
+    <nav>
         <ul>
-            <li><a href="{{ url_for('inventario') }}">inventario</a></li>
-            <li><a href="{{ url_for('productos') }}">productos</a></li>
-            <li><a href="{{ url_for('proveedores') }}">proveedores</a></li>
-            <li><a href="{{ url_for('remesa') }}">remesa</a></li>
-            <li><a href="{{ url_for('ventas') }}">ventas</a></li>
-            <li><button>Cerrar Sesión</button></li>
+           <a href=""></a>
         </ul>
     </nav>
+    <a href="{{ url_for('verinformacion.ver_proveedores') }}"> Proveedores</a>
+    <a href="{{ url_for('verinformacion.ver_remesas') }}"> remesas</a>
+    <a href="{{ url_for('verinformacion.ver_ventas') }}"> ventas</a>
+    <a href="{{ url_for('verinformacion.ver_pacientes') }}"> pacientes</a>
+    <a href="{{ url_for('verinformacion.ver_inventarios') }}"> inventarios</a>
+    <a href="{{ url_for('verinformacion.ver_pagos') }}"> Pagos</a>
+    
+    <h1>¡Bienvenido {{ session['usuario'] }}!</h1>
+    <p>Estás dentro del sistema.</p>
 </body>
 </html>

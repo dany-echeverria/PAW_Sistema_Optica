@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/paciente.css') }}">
+</head>
+<body>
+    <!-- Barra de tareas en el lado izquierdo -->
+    <div class="task-bar"></div>
+
+    <main class="main-container">
+        <h1 class="page-title">Tabla de Pagos</h1>
+
+        <!-- Barra de búsqueda y botones dentro del main -->
+        <div class="input-container">
+            <input type="text" class="search-input" placeholder="Buscar...">
+            <div class="button-container">
+                <button class="square-button">Actualizar</button>
+                <button class="square-button">Borrar</button>
+                <button class="square-button">Adelante</button>
+                <button class="square-button">Actualizar</button>
+                <a href="{{ url_for('create.agregar_pago') }}">
+
+                    <button>Agregar Inventario</button>
+                </a>
+                <button class="square-button">Atrás</button>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Id_Pago</th>
+                    <th>Id_Paciente</th>
+                    <th>Id_Venta</th>
+                    <th>SaldoAPagar</th>
+                    <th>Abono</th>
+                    <th>SaldoActual</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pagos in datos %}
+                    <tr>
+                        <td>{{ pagos.Id_Pago }}</td>
+                        <td>{{ pagos.Id_Paciente }}</td>
+                        <td>{{ pagos.Id_Venta }}</td>
+                        <td>{{ pagos.SaldoAPagar }}</td>
+                        <td>{{ pagos.Abono }}</td>
+                        <td>{{ pagos.SaldoActual }}</td>
+                        <td>{{ pagos.Fecha }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <a href="{{ url_for('bienvenida') }}">Regresar</a>
+
+</body>
+</html>

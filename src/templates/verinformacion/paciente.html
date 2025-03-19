@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/paciente.css') }}">
+</head>
+<body>
+    <!-- Barra de tareas en el lado izquierdo -->
+    <div class="task-bar"></div>
+
+    <main class="main-container">
+        <h1 class="page-title">Tabla de Pacientes</h1>
+
+        <!-- Barra de búsqueda y botones dentro del main -->
+        <div class="input-container">
+            <input type="text" class="search-input" placeholder="Buscar...">
+            <div class="button-container">
+                <button class="square-button">Actualizar</button>
+                <a href="{{ url_for('create.agregar_paciente') }}">
+
+                    <button>Agregar Inventario</button>
+                </a>
+                <button class="square-button">Actualizar</button>
+                <button class="square-button">Borrar</button>
+                <button class="square-button">Adelante</button>
+                <button class="square-button">Atrás</button>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <table>
+            <thead>
+                <tr>
+                    
+                    <th>Nombre_Pa</th>
+                    <th>Apellidos</th>
+                    <th>Teléfono1</th>
+                    <th>Teléfono2</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pacientes in datos %}
+                    <tr>
+                        
+                        <td>{{ pacientes.Nombre_Pa }}</td>
+                        <td>{{ pacientes.Apellidos }}</td>
+                        <td>{{ pacientes.Teléfono1 }}</td>
+                        <td>{{ pacientes.Teléfono2 }}</td>
+                        <td>{{ pacientes.Dirección }}</td>
+                        <td>{{ pacientes.Correo }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <a href="{{ url_for('bienvenida') }}">Regresar</a>
+</body>
+</html>

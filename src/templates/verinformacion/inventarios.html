@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/proveedores.css') }}">
+</head>
+<body>
+    <!-- Barra de tareas en el lado izquierdo -->
+    <div class="task-bar"></div>
+
+    <main class="main-container">
+        <h1 class="page-title">Tabla de Proveedores</h1>
+
+        <!-- Barra de búsqueda y botones dentro del main -->
+        <div class="input-container">
+            <input type="text" class="search-input" placeholder="Buscar...">
+            <div class="button-container">
+                <button class="square-button">Actualizar</button>
+                <a href="{{ url_for('create.agregar_inventario') }}">
+
+                    <button>Agregar Inventario</button>
+                </a>
+                <button class="square-button">Borrar</button>
+                <button class="square-button">Adelante</button>
+                <button class="square-button">Atrás</button>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Código Producto</th>
+                    <th>Id del Proveedor</th>
+                    <th>Nombre Producto</th>
+                    <th>Precio</th>
+                    <th>Modelo</th>
+                    <th>Cantidad</th>
+                    <th>Materiales</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inventarios in datos %}
+                    <tr>
+                        <td>{{ inventarios.Código_Prod }}</td>
+                        <td>{{ inventarios.Id_Proveedor }}</td>
+                        <td>{{ inventarios.Nombre_Prod }}</td>
+                        <td>{{ inventarios.Precio }}</td>
+                        <td>{{ inventarios.Modelo }}</td>
+                        <td>{{ inventarios.Cantidad }}</td>
+                        <td>{{ inventarios.Materiales }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <a href="{{ url_for('bienvenida') }}">Regresar</a>
+
+</body>
+</html>

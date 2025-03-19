@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/remesa.css') }}">
+</head>
+<body>
+    <!-- Barra de tareas en el lado izquierdo -->
+    <div class="task-bar"></div>
+
+    <main class="main-container">
+        <h1 class="page-title">Tabla Remesa</h1>
+
+        <!-- Barra de búsqueda y botones dentro del main -->
+        <div class="input-container">
+            <input type="text" class="search-input" placeholder="Buscar...">
+            <div class="button-container">
+                <button class="square-button">Actualizar</button>
+                <button class="square-button">Actualizar</button>
+                <a href="{{ url_for('create.agregar_remesa') }}">
+
+                    <button>Agregar Inventario</button>
+                </a>
+                <button class="square-button">Borrar</button>
+                <button class="square-button">Adelante</button>
+                <button class="square-button">Atras</button>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table-header">Remsa ID</th>
+                    <th class="table-header">Proveedor</th>
+                    <th class="table-header">Codigo Elemento</th>
+                    <th class="table-header">Modelo</th>
+                    <th class="table-header">Nombre</th>
+                    <th class="table-header">Num. Entrdas</th>
+                    <th class="table-header">Factura</th>
+                    <th class="table-header">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for remesas in datos %}
+                <tr>
+                    <td>{{ remesas.id }}</td>  
+                    <td>{{ remesas.Proveedor }}</td>  
+                    <td>{{ remesas.CodigoElemento }}</td>
+                    <td>{{ remesas.Modelo }}</td>
+                    <td>{{ remesas.Nombre }}</td>
+                    <td>{{ remesas.Num_Entradas }}</td>
+                    <td>{{ remesasFactura }}</td> 
+                    <td>{{ remesas.Fecha }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <a href="{{ url_for('bienvenida') }}">Regresar</a>
+
+</body>
+</html>
