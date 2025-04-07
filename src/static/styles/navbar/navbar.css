@@ -10,12 +10,14 @@
 body {
     height: 100vh;
 }
+
+/* DISEÑO DE NAVBAR GENERAL (GRANDE) */
 .navbar {
     display: flex;
     flex-direction: column;
     position: relative;
     background-color: #fff;
-    width: 160px;
+    width: 200px;
     border: solid #28469C 1px;
     border-radius: 0 15px 15px 0;
     height: 100%;
@@ -28,16 +30,17 @@ body {
     font-family: 'Montserrat';
     color: #28469C;
     width: 100%;
-    margin-top: 12px;
+    margin-top: 18px;
+    margin-left: 10px;
 }
 .nav-logo::after {
     content: '';
     display: block;
     position: absolute;
     bottom: -14px;
-    left: 14px;
+    left: 12px;
     background-color: #28469C;
-    width: 128px;
+    width: 74%;
     height: 1px;
 }
 .nav-img-logo {
@@ -77,39 +80,87 @@ body {
     flex-grow: 1;
     justify-content: space-around;
     list-style: none;
-    margin-left: 24px;
+    margin: 20px 0 0 24px;
 }
 .nav-btn {
-    background-color: #C4DAFA;
-    width: 120px;
-    height: 24px;
-    border-radius: 15px;
-}
-.nav-btn > a > i {
-    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    width: 84%;
+    height: 40px;
+    border-radius: 14px;
 }
 .nav-btn > a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    color: #000;
+    color: #000000;
     font-family: 'Poppins';
     font-size: 14px;
+    margin-left: 12px;
+    transition: .2s ease;
 }
+.nav-btn > a:hover {
+    color: #28469C;
+}
+.nav-btn > a > i {
+    text-align: center;
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* "nav-btn-active" es la CLASE QUE SE DARÁ CUANDO ESTES ACTIVO EN LA PÁGINA*/
+/* LO TENDRÁ UN ELEMENTO A LA VEZ */
+.nav-btn-active > a{
+    color: #28469C;
+}
+.nav-btn-active {
+    background-color: #C4DAFA;
+}
+
 .btn-cerrarSesion {
-    height: 34px;
-    width: 34px;
-    margin: 0 auto 20px auto;
-    background-color: #28469C;
-    border: none;
+    height: 38px;
+    width: 38px;
+    margin: 10px auto 40px auto;
+    background-color: #C4DAFA;
+    border: 1px solid #28469C;
     border-radius: 100px;
-    box-shadow: 1px 1px 5px #000;
+    box-shadow: 1px 1px 5px #28469C;
     transition: .3s;
     cursor: pointer;
-
 }
 .btn-cerrarSesion:hover{
-    box-shadow: 2px 2px 5px #000;
+    box-shadow: 2px 2px 5px #28469C;
     transform: scale(1.01);
 }
 .btn-cerrarSesion > i {
-    color: #fff;
+    color: #28469C;
+}
+
+
+/* DISEÑO DE NAVBAR PEQUEÑA */
+.navbar-hidden {
+    width: 80px;
+    border: solid #28469C 1px;
+}
+.navbar-hidden .nav-logo {
+    width: 100%;
+    margin-top: 18px;
+    margin-left: 6px;
+}
+.navbar-hidden .nav-logo::after {
+    background-color: #28469C;
+    width: 55%;
+}
+.navbar-hidden .nav-logo .nav-titulo {
+    display: none;
+}
+.navbar-hidden .nav-buttons {
+    margin: 20px 0 0 18px;
+}
+.navbar-hidden .nav-btn {
+    width: 40px;
+    height: 40px;
+}
+.navbar-hidden .nav-buttons .nav-btn .nav-btn-texto {
+    display: none;
 }

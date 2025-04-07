@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../static/styles/navbar/navbar.css">
 </head>
 <body>
-    <nav id="fullscreen-menu" class="hidden navbar">
+    <nav id="fullscreen-menu" class="navbar-hidden navbar ">
         <div class="nav-logo">
             <span class="fondo-img-logo">
                 <img src="#" class="nav-img-logo">
@@ -20,26 +20,26 @@
             </span>
         </div>
         <ul class="nav-buttons">
-            <li class="nav-btn btn-inventario">
+            <li class="nav-btn btn-inventario nav-btn-active">
                 <a href="{{ url_for('inventario') }}">
                 <i class="fa-solid fa-box"></i>
-                Inventario</a></li>
-            <li class="nav-btn btn-proveedores">
+                <span class="nav-btn-texto">Inventario</span></a></li>
+            <li class="nav-btn btn-proveedores nav-btn-active">
                 <a href="{{ url_for('proveedores') }}">
                 <i class="fa-solid fa-truck"></i>
-                Proveedores</a></li>
-            <li class="nav-btn btn-ventanas">
+                <span class="nav-btn-texto ">Proveedores</span></a></li>
+            <li class="nav-btn btn-ventanas nav-btn-active">
                 <a href="{{ url_for('ventas') }}">
                 <i class="fa-solid fa-money-bill-transfer"></i>
-                Ventas</a></li>
-            <li class="nav-btn btn-productos">
+                <span class="nav-btn-texto">Ventas</span></a></li>
+            <li class="nav-btn btn-productos nav-btn-active">
                 <a href="{{ url_for('productos') }}">
                 <i class="fa-solid fa-truck"></i>
-                Productos</a></li>
-            <li class="nav-btn btn-remesas">
+                <span class="nav-btn-texto ">Productos</span></a></li>
+            <li class="nav-btn btn-remesas nav-btn-active">
                 <a href="{{ url_for('remesa') }}">
                 <i class="fa-solid fa-coins"></i>
-                Remesa</a></li>
+                <span class="nav-btn-texto">Remesa</span></a></li>
 
         </ul>
         <button class="btn-cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></button>
