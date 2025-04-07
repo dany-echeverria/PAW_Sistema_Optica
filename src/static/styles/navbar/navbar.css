@@ -7,28 +7,109 @@
     margin: 0;
     box-sizing: border-box;
 }
-.nav-img-logo {
-    width: 64px;
+body {
+    height: 100vh;
 }
 .navbar {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     background-color: #fff;
     width: 160px;
     border: solid #28469C 1px;
     border-radius: 0 15px 15px 0;
-    height: 100vh;
+    height: 100%;
 }
 .nav-logo {
     display: flex;
-    justify-content: center;
+    position: relative;
+    justify-content: left;
+    align-items: center;
     font-family: 'Montserrat';
     color: #28469C;
     width: 100%;
+    margin-top: 12px;
+}
+.nav-logo::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -14px;
+    left: 14px;
+    background-color: #28469C;
+    width: 128px;
+    height: 1px;
+}
+.nav-img-logo {
+    width: 64px;
+}
+.fondo-img-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background-color: #BC534D;
+    margin-left: 12px;
+}
+.nav-titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 12px;
+}
+.nav-titulo1, .nav-titulo2 {
+    font-size: 14px;
 }
 .nav-titulo1 {
-    font-size: 18px;
-    font-weight: 400;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 .nav-titulo2 {
     font-weight: 300;
-    font-size: 18px;
+}
+
+/* BUTTONS NAVBAR */
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-around;
+    list-style: none;
+    margin-left: 24px;
+}
+.nav-btn {
+    background-color: #C4DAFA;
+    width: 120px;
+    height: 24px;
+    border-radius: 15px;
+}
+.nav-btn > a > i {
+    margin-right: 4px;
+}
+.nav-btn > a {
+    text-decoration: none;
+    color: #000;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+.btn-cerrarSesion {
+    height: 34px;
+    width: 34px;
+    margin: 0 auto 20px auto;
+    background-color: #28469C;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 1px 1px 5px #000;
+    transition: .3s;
+    cursor: pointer;
+
+}
+.btn-cerrarSesion:hover{
+    box-shadow: 2px 2px 5px #000;
+    transform: scale(1.01);
+}
+.btn-cerrarSesion > i {
+    color: #fff;
 }

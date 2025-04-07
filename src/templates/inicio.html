@@ -11,30 +11,39 @@
 <body>
     <nav id="fullscreen-menu" class="hidden navbar">
         <div class="nav-logo">
-            <img src="../images/sunglasses_logo.png" class="nav-img-logo">
+            <span class="fondo-img-logo">
+                <img src="#" class="nav-img-logo">
+            </span>
             <span class="nav-titulo">
                 <h2 class="nav-titulo1">Opticas</h2>
                 <h2 class="nav-titulo2">Franklin</h2>
             </span>
         </div>
         <ul class="nav-buttons">
-            <li class="nav-btn btn-inventario"><a href="{{ url_for('inventario') }}">
+            <li class="nav-btn btn-inventario">
+                <a href="{{ url_for('inventario') }}">
                 <i class="fa-solid fa-box"></i>
                 Inventario</a></li>
-            <li class="nav-btn btn-proveedores"><a href="{{ url_for('proveedores') }}">
+            <li class="nav-btn btn-proveedores">
+                <a href="{{ url_for('proveedores') }}">
                 <i class="fa-solid fa-truck"></i>
                 Proveedores</a></li>
-            <li class="nav-btn btn-ventanas"><a href="{{ url_for('ventas') }}">
+            <li class="nav-btn btn-ventanas">
+                <a href="{{ url_for('ventas') }}">
                 <i class="fa-solid fa-money-bill-transfer"></i>
                 Ventas</a></li>
-            <li class="nav-btn btn-productos"><a href="{{ url_for('productos') }}">
+            <li class="nav-btn btn-productos">
+                <a href="{{ url_for('productos') }}">
                 <i class="fa-solid fa-truck"></i>
                 Productos</a></li>
-            <li class="nav-btn btn-remesas"><a href="{{ url_for('remesa') }}">
+            <li class="nav-btn btn-remesas">
+                <a href="{{ url_for('remesa') }}">
                 <i class="fa-solid fa-coins"></i>
                 Remesa</a></li>
+
         </ul>
-        <button class="btn-cerrarSesion">Cerrar Sesión</button>
+        <button class="btn-cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></button>
+        
     </nav>
 </body>
 </html>
