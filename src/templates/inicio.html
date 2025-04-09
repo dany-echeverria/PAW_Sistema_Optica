@@ -7,9 +7,11 @@
     <script src="https://kit.fontawesome.com/7f87e90d60.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../static/styles/navbar/navbar.css">
+    <link rel="stylesheet" href="../static/styles/navbar/navbar.js">
 </head>
 <body>
-    <nav id="fullscreen-menu" class="navbar-hidden navbar ">
+    <!-- Para escondar NAVBAR  usa CLASS: navbar-hidden -->
+    <nav id="fullscreen-menu" class=" navbar " id="navbar">
         <div class="nav-logo">
             <span class="fondo-img-logo">
                 <img src="#" class="nav-img-logo">
@@ -20,23 +22,24 @@
             </span>
         </div>
         <ul class="nav-buttons">
+            <!-- Para marcar pagina actual usa CLASS: nav-btn-active -->
             <li class="nav-btn btn-inventario nav-btn-active">
                 <a href="{{ url_for('inventario') }}">
                 <i class="fa-solid fa-box"></i>
                 <span class="nav-btn-texto">Inventario</span></a></li>
-            <li class="nav-btn btn-proveedores nav-btn-active">
+            <li class="nav-btn btn-proveedores">
                 <a href="{{ url_for('proveedores') }}">
                 <i class="fa-solid fa-truck"></i>
                 <span class="nav-btn-texto ">Proveedores</span></a></li>
-            <li class="nav-btn btn-ventanas nav-btn-active">
+            <li class="nav-btn btn-ventanas">
                 <a href="{{ url_for('ventas') }}">
                 <i class="fa-solid fa-money-bill-transfer"></i>
                 <span class="nav-btn-texto">Ventas</span></a></li>
-            <li class="nav-btn btn-productos nav-btn-active">
+            <li class="nav-btn btn-productos">
                 <a href="{{ url_for('productos') }}">
                 <i class="fa-solid fa-truck"></i>
                 <span class="nav-btn-texto ">Productos</span></a></li>
-            <li class="nav-btn btn-remesas nav-btn-active">
+            <li class="nav-btn btn-remesas">
                 <a href="{{ url_for('remesa') }}">
                 <i class="fa-solid fa-coins"></i>
                 <span class="nav-btn-texto">Remesa</span></a></li>
