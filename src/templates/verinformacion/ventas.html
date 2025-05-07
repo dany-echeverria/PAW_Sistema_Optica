@@ -30,78 +30,91 @@
         </ul>
         <a href="{{ url_for('auth.login') }}"><button class="btn-cerrarSesion"><i class="fas fa-sign-out-alt"></i></button></a>
     </nav>
+
     <main class="main-container">
         <h1 class="page-title">Tabla de Ventas</h1>
 
+        <div class="barAndTableContainer">
+            <div class="search-container">
+                <select id="campoBusqueda">
+                    <option value="Id_Paciente">Id_Paciente</option>
+                    <option value="Id_venta">Id_venta</option>
+                    <option value="Armason">Armason</option>
+                    <option value="Tratamiento">Tratamiento</option>
+                    <option value="FechaEntrega">FechaEntrega</option>
+                    <option value="FechaVenta">FechaVenta</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Buscar..." class="searchInput">
 
-        <div class="search-container">
-            <select id="campoBusqueda">
-                <option value="Id_Paciente">Id_Paciente</option>
-                <option value="Id_venta">Id_venta</option>
-                <option value="Armason">Armason</option>
-                <option value="Tratamiento">Tratamiento</option>
-                <option value="FechaEntrega">FechaEntrega</option>
-                <option value="FechaVenta">FechaVenta</option>
-            </select>
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button id="btnBuscar" class="icon-button blue">Buscar</button>
-            <a href="{{ url_for('verinformacion.ver_ventas') }}"><button class="icon-button gray">Ver Todo</button></a>
-
-
-            <button class="icon-button yellow actualizar" title="Actualizar"><i class="fas fa-sync-alt"></i></button>
-
-            <a href="{{ url_for('create.agregar_venta') }}">
-                <button class="icon-button green" title="Agregar"><i class="fas fa-plus"></i></button>
-            </a>
-
-            <button class="icon-button red borrar" title="Borrar"><i class="fas fa-minus"></i></button>
-
-            <button class="icon-button blue" id="btnAtras" title="Anterior" {% if page == 1 %}disabled{% endif %}><i class="fas fa-arrow-left"></i></button>
-            <button class="icon-button blue" id="btnAdelante" title="Siguiente" {% if page >= total_pages %}disabled{% endif %}><i class="fas fa-arrow-right"></i></button>
+                <div class="buttons-tools">
+                    <button id="btnBuscar" class="icon-button blue">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <a href="{{ url_for('verinformacion.ver_ventas') }}">
+                        <button class="icon-button gray">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </a>
+        
+                    <button class="icon-button yellow actualizar" title="Actualizar">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+        
+                    <a href="{{ url_for('create.agregar_venta') }}">
+                        <button class="icon-button green" title="Agregar"><i class="fas fa-plus"></i></button>
+                    </a>
+        
+                    <button class="icon-button red borrar" title="Borrar"><i class="fas fa-minus"></i></button>
+        
+                    <button class="icon-button blue" id="btnAtras" title="Anterior" {% if page == 1 %}disabled{% endif %}><i class="fas fa-arrow-left"></i></button>
+                    <button class="icon-button blue" id="btnAdelante" title="Siguiente" {% if page >= total_pages %}disabled{% endif %}><i class="fas fa-arrow-right"></i></button>
+                </div>
+                </div>
+                
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Seleccionar</th>
+                            <th>ID Venta</th>
+                            <th>Paciente</th>
+                            <th>Ojo Derecho</th>
+                            <th>Ojo Izquierdo</th>
+                            <th>Armazón</th>
+                            <th>Tratamiento</th>
+                            <th>Observaciones</th>
+                            <th>Anticipo</th>
+                            <th>Adeudo</th>
+                            <th>Fecha Venta</th>
+                            <th>Fecha Entrega</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ventas-table-body">
+                        {% for venta in datos %}
+                            <tr>
+                                <td><input type="radio" name="selectRow" class="selectRow" data-id="{{ venta.Id_venta }}"></td>
+                                <td>{{ venta.Id_venta }}</td>
+                                <td>{{ venta.Id_Paciente }} - {{ venta.paciente.Nombre_Pa }} {{ venta.paciente.Apellidos }}</td>
+                                <td>{{ venta.graduacion_ojo_derecho }}</td>
+                                <td>{{ venta.graduacion_ojo_izquierdo }}</td>
+                                <td>{{ venta.Armason }}</td>
+                                <td>{{ venta.Tratamiento }}</td>
+                                <td>{{ venta.observaciones }}</td>
+                                <td>{{ venta.Anticipo }}</td>
+                                <td>{{ venta.Adeudo }}</td>
+                                <td>{{ venta.FechaVenta.strftime('%Y-%m-%d') if venta.FechaVenta else '' }}</td>
+                                <td>{{ venta.FechaEntrega.strftime('%Y-%m-%d') if venta.FechaEntrega else '' }}</td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="11">No hay ventas registradas.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
         </div>
-       
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Seleccionar</th>
-                    <th>ID Venta</th>
-                    <th>Paciente</th>
-                    <th>Ojo Derecho</th>
-                    <th>Ojo Izquierdo</th>
-                    <th>Armazón</th>
-                    <th>Tratamiento</th>
-                    <th>Observaciones</th>
-                    <th>Anticipo</th>
-                    <th>Adeudo</th>
-                    <th>Fecha Venta</th>
-                    <th>Fecha Entrega</th>
-                </tr>
-            </thead>
-            <tbody id="ventas-table-body">
-                {% for venta in datos %}
-                    <tr>
-                        <td><input type="radio" name="selectRow" class="selectRow" data-id="{{ venta.Id_venta }}"></td>
-                        <td>{{ venta.Id_venta }}</td>
-                        <td>{{ venta.Id_Paciente }} - {{ venta.paciente.Nombre_Pa }} {{ venta.paciente.Apellidos }}</td>
-                        <td>{{ venta.graduacion_ojo_derecho }}</td>
-                        <td>{{ venta.graduacion_ojo_izquierdo }}</td>
-                        <td>{{ venta.Armason }}</td>
-                        <td>{{ venta.Tratamiento }}</td>
-                        <td>{{ venta.observaciones }}</td>
-                        <td>{{ venta.Anticipo }}</td>
-                        <td>{{ venta.Adeudo }}</td>
-                        <td>{{ venta.FechaVenta.strftime('%Y-%m-%d') if venta.FechaVenta else '' }}</td>
-                        <td>{{ venta.FechaEntrega.strftime('%Y-%m-%d') if venta.FechaEntrega else '' }}</td>
-                    </tr>
-                {% else %}
-                    <tr><td colspan="11">No hay ventas registradas.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        
     </main>
-
-    <a href="{{ url_for('bienvenida') }}">Regresar</a>
 
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script>

@@ -11,106 +11,116 @@
         <h1 class="page-title">Ingresar Venta</h1>
         <form method="POST">
         
-            <!-- Buscar paciente -->
-            <label for="buscar_paciente">Buscar Paciente:</label>
-            <div class="input-container">
-                <input type="text" id="buscar_paciente" onkeyup="filtrarPacientes()" placeholder="Escriba para buscar...">
-                <i class="fa-solid fa-search"></i>
-            </div>
-            <br>
-        
-            <!-- Select paciente -->
-            <label for="Id_Paciente">Id Paciente:</label>
-            <div class="input-container">
-                <select name="Id_Paciente" id="Id_Paciente" required>
-                    <option value="" selected disabled>-- Selecciona una opción --</option>
-                    {% for paciente in pacientes %}
-                        <option value="{{ paciente.Id_Paciente }}">{{ paciente.Id_Paciente }} - {{ paciente.Nombre_Pa }} {{ paciente.Apellidos }}</option>
-                    {% endfor %}
-                </select>
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <br>
-
-            <!-- Tratamientos -->
-            <div id="tratamientosContainer">
-                <label for="Tratamiento">Tratamiento (producto):</label>
-                <div class="input-container tratamiento-item">
-                    <select class="tratamiento" name="Tratamiento" onchange="actualizarAdeudo()" required >
+            <div class="inputs">
+                <!-- Buscar paciente -->
+                <label for="buscar_paciente">Buscar Paciente:</label>
+                <div class="input-container">
+                    <input type="text" id="buscar_paciente" onkeyup="filtrarPacientes()" placeholder="Escriba para buscar...">
+                    <i class="fa-solid fa-search"></i>
+                </div>
+                <br>
+            
+                <!-- Select paciente -->
+                <label for="Id_Paciente">Id Paciente:</label>
+                <div class="input-container">
+                    <select name="Id_Paciente" id="Id_Paciente" required>
                         <option value="" selected disabled>-- Selecciona una opción --</option>
-                        {% for producto in inventarios %}
-                            <option value="{{ producto.Nombre_Prod }}" data-precio="{{ producto.Precio }}">
-                                {{ producto.Nombre_Prod }} - ${{ producto.Precio }}
-                            </option>
+                        {% for paciente in pacientes %}
+                            <option value="{{ paciente.Id_Paciente }}">{{ paciente.Id_Paciente }} - {{ paciente.Nombre_Pa }} {{ paciente.Apellidos }}</option>
                         {% endfor %}
                     </select>
-                    <button  style="background-color: red;" onclick="eliminarTratamiento(this)">X</button>
+                    <i class="fa-solid fa-user"></i>
                 </div>
+                <br>
+
+                <!-- Tratamientos -->
+                <div id="tratamientosContainer">
+                    <label for="Tratamiento">Tratamiento (producto):</label>
+                    <div class="input-container tratamiento-item">
+                        <div class="tratamientoSelect-container">
+                            <select class="tratamiento" name="Tratamiento" onchange="actualizarAdeudo()" required >
+                                <option value="" selected disabled>-- Selecciona una opción --</option>
+                                {% for producto in inventarios %}
+                                    <option value="{{ producto.Nombre_Prod }}" data-precio="{{ producto.Precio }}">
+                                        {{ producto.Nombre_Prod }} - ${{ producto.Precio }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <button  class="btn-eliminarTratamiento" onclick="eliminarTratamiento(this)" title="Eliminar tratamiento">
+                                <i class="fa-solid fa-trash icon-trash"></i>
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <button type="button" onclick="agregarTratamiento()" class="btn-agregarTratamiento">Agregar tratamiento</button><br><br>
+
+                <label for="observaciones">Observaciones:</label>
+                <div class="input-container">
+                    <input type="text"  name="observaciones" id="observaciones" readonly>
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <br>
+                
+                <!-- Adeudo y Anticipo -->
+                <label for="Adeudo">Adeudo:</label>
+                <div class="input-container">
+                    <input type="number" step="0.01" name="Adeudo" id="Adeudo" readonly>
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                
+                <br>
+
+                <div id="mensajeCambio" style="color: red; font-weight: bold;"></div>
+
+                <label for="Anticipo">Anticipo:</label>
+                <div class="input-container">
+                    <input type="number" step="0.01" name="Anticipo" id="Anticipo" oninput="actualizarAdeudo()" required>
+                    <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <br>
+
+                <!-- Información adicional -->
+                <label for="graduacion_ojo_derecho">Graduación ojo derecho</label>
+                <div class="input-container">
+                    <input type="text" name="graduacion_ojo_derecho" required>
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <br>
+            
+                <label for="graduacion_ojo_izquierdo">Graduación ojo izquierdo</label>
+                <div class="input-container">
+                    <input type="text" name="graduacion_ojo_izquierdo" required>
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <br>
+            
+            
+                <label for="Armason">Armazón:</label>
+                <div class="input-container">
+                    <input type="text" name="Armason" required>
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <br>
+
+                <div class="fechas-container">
+                    <div class="input-container fecha-container">
+                        <label for="FechaVenta">Fecha de venta:</label>
+                        <input type="date" name="FechaVenta" required>
+                    </div>
+                    <br>
+    
+                    
+                    <div class="input-container fecha-container">
+                        <label for="FechaEntrega">Fecha de entrega:</label>
+                        <input type="date" name="FechaEntrega">
+                    </div>
+                    <br>
+                </div>
+                
             </div>
             
-            <button type="button" onclick="agregarTratamiento()">+ Agregar otro tratamiento</button><br><br>
-        
-
-            <label for="observaciones">observaciones:</label>
-            <div class="input-container">
-                <input type="text"  name="observaciones" id="observaciones" readonly>
-                <i class="fa-solid fa-dollar-sign"></i>
-            </div>
-            
-            <!-- Adeudo y Anticipo -->
-            <label for="Adeudo">Adeudo:</label>
-            <div class="input-container">
-                <input type="number" step="0.01" name="Adeudo" id="Adeudo" readonly>
-                <i class="fa-solid fa-dollar-sign"></i>
-            </div>
-            
-            <br>
-
-            <div id="mensajeCambio" style="color: red; font-weight: bold;"></div>
-
-            <label for="Anticipo">Anticipo:</label>
-            <div class="input-container">
-                <input type="number" step="0.01" name="Anticipo" id="Anticipo" oninput="actualizarAdeudo()" required>
-                <i class="fa-solid fa-credit-card"></i>
-            </div>
-            <br>
-
-            <!-- Información adicional -->
-            <label for="graduacion_ojo_derecho">Graduación ojo derecho</label>
-            <div class="input-container">
-                <input type="text" name="graduacion_ojo_derecho" required>
-                <i class="fa-solid fa-eye"></i>
-            </div>
-            <br>
-        
-            <label for="graduacion_ojo_izquierdo">Graduación ojo izquierdo</label>
-            <div class="input-container">
-                <input type="text" name="graduacion_ojo_izquierdo" required>
-                <i class="fa-solid fa-eye"></i>
-            </div>
-            <br>
-        
-        
-            <label for="Armason">Armazón:</label>
-            <div class="input-container">
-                <input type="text" name="Armason" required>
-                <i class="fa-solid fa-cube"></i>
-            </div>
-            <br>
-
-            <label for="FechaVenta">Fecha de venta:</label>
-            <div class="input-container">
-                <input type="date" name="FechaVenta" required>
-                <i class="fa-solid fa-calendar-days"></i>
-            </div>
-            <br>
-
-            <label for="FechaEntrega">Fecha de entrega:</label>
-            <div class="input-container">
-                <input type="date" name="FechaEntrega">
-                <i class="fa-solid fa-calendar-days"></i>
-            </div>
-            <br>
         
             <!-- Botones -->
             <div class="botones-accion">
@@ -135,13 +145,14 @@
         function agregarTratamiento() {
             const container = document.getElementById("tratamientosContainer");
             const div = document.createElement("div");
-            div.className = "input-container tratamiento-item";
+            div.className = "input-container tratamiento-item tratamiento-extra";
             const select = document.querySelector(".tratamiento").cloneNode(true);
             select.addEventListener("change", actualizarAdeudo);
 
             const btnEliminar = document.createElement("button");
             btnEliminar.type = "button";
-            btnEliminar.innerHTML = "🗑️";
+            btnEliminar.innerHTML = "<i class='fa-solid fa-minus icon-trash'></i>";
+            btnEliminar.className = "btn-eliminarTratamientoExtra btn-eliminarTratamiento";
             btnEliminar.onclick = function() {
                 eliminarTratamiento(this);
             };

@@ -39,61 +39,81 @@
     <main class="main-container">
         <h1 class="page-title">Tabla de Proveedores</h1>
 
-        <div class="search-container">
-            <select id="campoBusqueda">
-                <option value="Nombre_Prov">Nombre del Proveedor</option>
-                <option value="Correo">Correo</option>
-                <option value="Dirección">Dirección</option>
-                <option value="Teléfono"> Teléfono</option>
-            </select>
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button id="btnBuscar" class="icon-button blue">Buscar</button>
-            <a href="{{ url_for('verinformacion.ver_proveedores') }}"><button class="icon-button gray">Ver Todo</button></a>
+        <div class="barAndTableContainer">
+            <div class="search-container">
+                <select id="campoBusqueda">
+                    <option value="Nombre_Prov">Nombre del Proveedor</option>
+                    <option value="Correo">Correo</option>
+                    <option value="Dirección">Dirección</option>
+                    <option value="Teléfono"> Teléfono</option>
+                </select>
 
-            <button class="icon-button yellow actualizar"><i class="fa fa-sync-alt"></i></button>
-            <a href="{{ url_for('create.agregar_proveedor') }}">
-                <button class="icon-button green" title="Agregar"><i class="fa fa-plus"></i></button>
-            </a>
-            <button class="icon-button red borrar" title="Borrar"><i class="fa fa-minus"></i></button>
-            <button class="icon-button blue" id="btnAtras" {% if page == 1 %}disabled{% endif %}><i class="fa fa-arrow-left"></i></button>
-            <button class="icon-button blue" id="btnAdelante" {% if page >= total_pages %}disabled{% endif %}><i class="fa fa-arrow-right"></i></button>
+                <input type="text" id="searchInput" placeholder="Buscar..." class="searchInput">
 
-
+                <div class="buttons-tools">
+                    <!-- BUTTON BUSCAR -->
+                    <button id="btnBuscar" class="icon-button blue">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    
+                    <!-- BUTTON VER INFO -->
+                    <a href="{{ url_for('verinformacion.ver_proveedores') }}" class="link-button" title="Ver Todo">
+                        <button class="icon-button gray">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </a>
+                    
+                    <!-- BUTTON ACTUALIZAR -->
+                    <button class="icon-button yellow actualizar"><i class="fa fa-sync-alt"></i></button>
+                    
+                    <!-- BUTTON AGREGAR -->
+                    <a href="{{ url_for('create.agregar_proveedor') }}" class="link-button">
+                        <button class="icon-button green" title="Agregar"><i class="fa fa-plus"></i></button>
+                    </a>
+                    
+                    <!-- BUTTON BORRAR -->
+                    <button class="icon-button red borrar" title="Borrar">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    
+                    <!-- BUTTON ATRAS -->
+                    <button class="icon-button blue" id="btnAtras" {% if page == 1 %}disabled{% endif %}><i class="fa fa-arrow-left"></i></button>
+                    
+                    <!-- BUTTON ADELANTE -->
+                    <button class="icon-button blue" id="btnAdelante" {% if page >= total_pages %}disabled{% endif %}><i class="fa fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Seleccionar</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                    </tr>
+                </thead>
+                <tbody id="proveedoresTableBody">
+                    {% for proveedor in datos %}
+                    <tr>
+                        <td><input type="radio" name="selectRow" class="selectRow" data-id="{{ proveedor.Id_Proveedor }}"></td>
+                        <td>{{ proveedor.Id_Proveedor }}</td>
+                        <td>{{ proveedor.Nombre_Prov }}</td>
+                        <td>{{ proveedor.Correo }}</td>
+                        <td>{{ proveedor.Dirección }}</td>
+                        <td>{{ proveedor.Teléfono }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7">No hay proveedores disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-
-       
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Seleccionar</th>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Dirección</th>
-                    <th>Teléfono</th>
-                </tr>
-            </thead>
-            <tbody id="proveedoresTableBody">
-                {% for proveedor in datos %}
-                <tr>
-                    <td><input type="radio" name="selectRow" class="selectRow" data-id="{{ proveedor.Id_Proveedor }}"></td>
-                    <td>{{ proveedor.Id_Proveedor }}</td>
-                    <td>{{ proveedor.Nombre_Prov }}</td>
-                    <td>{{ proveedor.Correo }}</td>
-                    <td>{{ proveedor.Dirección }}</td>
-                    <td>{{ proveedor.Teléfono }}</td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="7">No hay proveedores disponibles.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </main>
 
-    <a href="{{ url_for('bienvenida') }}">Regresar</a>
 
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script>

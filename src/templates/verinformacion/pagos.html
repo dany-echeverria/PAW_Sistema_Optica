@@ -38,70 +38,78 @@
     <main class="main-container">
         <h1 class="page-title">Tabla de Pagos</h1>
 
-        <div class="search-container">
-            <select id="campoBusqueda">
-                <option value="Id_Paciente">Id_Paciente</option>
-                <option value="Id_Pago">Id_Pago</option>
-                <option value="Id_Venta">Id_Venta</option>
-                <option value="Fecha">Fecha</option>
-                <option value="SaldoAPagar">SaldoAPagar</option>
-                <option value="Abono">Abono</option>
-            </select>
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button id="btnBuscar" class="icon-button blue">Buscar</button>
-            <a href="{{ url_for('verinformacion.ver_pagos') }}"><button class="icon-button gray">Ver Todo</button></a>
+        <div class="barAndTableContainer">
+            <div class="search-container">
+                <select id="campoBusqueda">
+                    <option value="Id_Paciente">Id_Paciente</option>
+                    <option value="Id_Pago">Id_Pago</option>
+                    <option value="Id_Venta">Id_Venta</option>
+                    <option value="Fecha">Fecha</option>
+                    <option value="SaldoAPagar">SaldoAPagar</option>
+                    <option value="Abono">Abono</option>
+                </select>
 
-            <button class="icon-button yellow actualizar" title="Actualizar"><i class="fas fa-sync-alt"></i></button>
+                <input type="text" id="searchInput" placeholder="Buscar..." class="searchInput">
 
-            <a href="{{ url_for('create.agregar_pago') }}">
-                <button class="icon-button green" title="Agregar"><i class="fas fa-plus"></i></button>
-            </a>
-
-            <button class="icon-button red borrar" title="Borrar"><i class="fas fa-minus"></i></button>
-
-            <button class="icon-button blue" id="btnAtras" title="Anterior" {% if page == 1 %}disabled{% endif %}><i class="fas fa-arrow-left"></i></button>
-            <button class="icon-button blue" id="btnAdelante" title="Siguiente" {% if page >= total_pages %}disabled{% endif %}><i class="fas fa-arrow-right"></i></button>
+                <div class="buttons-tools">
+                    <button id="btnBuscar" class="icon-button blue">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <a href="{{ url_for('verinformacion.ver_pagos') }}"><button class="icon-button gray">
+                        <i class="fa-solid fa-eye"></i>
+                    </button></a>
+        
+                    <button class="icon-button yellow actualizar" title="Actualizar"><i class="fas fa-sync-alt"></i></button>
+        
+                    <a href="{{ url_for('create.agregar_pago') }}">
+                        <button class="icon-button green" title="Agregar"><i class="fas fa-plus"></i></button>
+                    </a>
+        
+                    <button class="icon-button red borrar" title="Borrar"><i class="fas fa-minus"></i></button>
+        
+                    <button class="icon-button blue" id="btnAtras" title="Anterior" {% if page == 1 %}disabled{% endif %}><i class="fas fa-arrow-left"></i></button>
+                    <button class="icon-button blue" id="btnAdelante" title="Siguiente" {% if page >= total_pages %}disabled{% endif %}><i class="fas fa-arrow-right"></i></button>
+                </div>
+                
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Seleccionar</th>
+                        <th>Id_Pago</th>
+                        <th>Id_Paciente</th>
+                        <th>Id_Venta</th>
+                        <th>Saldo A Pagar</th>
+                        <th>Abono</th>
+                        <th>Saldo Actual</th>
+                        <th>Fecha</th>
+                        <th>Producto Entregado</th>
+                    </tr>
+                </thead>
+                <tbody id="pagosTableBody">
+                    {% for pago in datos %}
+                        <tr>
+                            <td><input type="radio" name="selectRow" class="selectRow" data-id="{{ pago.Id_Pago }}"></td>
+                            <td>{{ pago.Id_Pago }}</td>
+                            <td>{{ pago.Id_Paciente }} - {{ pago.paciente.Nombre_Pa }} {{ pago.paciente.Apellidos }}</td>
+                            <td>{{ pago.Id_Venta }}</td>
+                            <td>{{ pago.SaldoAPagar }}</td>
+                            <td>{{ pago.Abono }}</td>
+                            <td>{{ pago.SaldoActual }}</td>
+                            <td>{{ pago.Fecha }}</td>
+                            <td>{{ 'Sí' if pago.ProductoEntregado else 'No' }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">No hay pagos registrados.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-
-    
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Seleccionar</th>
-                    <th>Id_Pago</th>
-                    <th>Id_Paciente</th>
-                    <th>Id_Venta</th>
-                    <th>Saldo A Pagar</th>
-                    <th>Abono</th>
-                    <th>Saldo Actual</th>
-                    <th>Fecha</th>
-                    <th>Producto Entregado</th>
-                </tr>
-            </thead>
-            <tbody id="pagosTableBody">
-                {% for pago in datos %}
-                    <tr>
-                        <td><input type="radio" name="selectRow" class="selectRow" data-id="{{ pago.Id_Pago }}"></td>
-                        <td>{{ pago.Id_Pago }}</td>
-                        <td>{{ pago.Id_Paciente }} - {{ pago.paciente.Nombre_Pa }} {{ pago.paciente.Apellidos }}</td>
-                        <td>{{ pago.Id_Venta }}</td>
-                        <td>{{ pago.SaldoAPagar }}</td>
-                        <td>{{ pago.Abono }}</td>
-                        <td>{{ pago.SaldoActual }}</td>
-                        <td>{{ pago.Fecha }}</td>
-                        <td>{{ 'Sí' if pago.ProductoEntregado else 'No' }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="9">No hay pagos registrados.</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </main>
 
-    <a href="{{ url_for('bienvenida') }}">Regresar</a>
 
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script>

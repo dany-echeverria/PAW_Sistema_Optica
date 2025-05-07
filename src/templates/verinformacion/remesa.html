@@ -35,67 +35,92 @@
     <main class="main-container">
         <h1 class="page-title">Tabla de Remesas</h1>
 
+        <div class="barAndTableContainer">
 
-        <div class="search-container">
-            <select id="campoBusqueda">
-                <option value="proveedor">Proveedor</option>
-                <option value="Modelo">Modelo</option>
-                <option value="Nombre">Nombre</option>
-                <option value="Factura">Factura</option>
-            </select>
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button id="btnBuscar" class="icon-button blue">Buscar</button>
-            <a href="{{ url_for('verinformacion.ver_remesas') }}"><button class="icon-button gray">Ver Todo</button></a>
-            <button class="icon-button yellow actualizar" title="Actualizar"><i class="fas fa-sync-alt"></i></button>
+            <div class="search-container">
+                <select id="campoBusqueda">
+                    <option value="proveedor">Proveedor</option>
+                    <option value="Modelo">Modelo</option>
+                    <option value="Nombre">Nombre</option>
+                    <option value="Factura">Factura</option>
+                </select>
 
-            <a href="{{ url_for('create.agregar_remesa') }}">
-                <button class="icon-button green" title="Agregar"><i class="fas fa-plus"></i></button>
-            </a>
+                <input type="text" id="searchInput" placeholder="Buscar..." class="searchInput">
 
-            <button class="icon-button red borrar" title="Borrar"><i class="fas fa-minus"></i></button>
+                <div class="buttons-tools">
+                    <button id="btnBuscar" class="icon-button blue">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
 
-            <button class="icon-button blue" id="btnAtras" title="Anterior" {% if page == 1 %}disabled{% endif %}><i class="fas fa-arrow-left"></i></button>
-            <button class="icon-button blue" id="btnAdelante" title="Siguiente" {% if page >= total_pages %}disabled{% endif %}><i class="fas fa-arrow-right"></i></button>
+                    <a href="{{ url_for('verinformacion.ver_remesas') }}">
+                        <button class="icon-button gray">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </a>
+
+                    <button class="icon-button yellow actualizar" title="Actualizar">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+
+                    <a href="{{ url_for('create.agregar_remesa') }}">
+                        <button class="icon-button green" title="Agregar">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </a>
+
+                    <button class="icon-button red borrar" title="Borrar">
+                        <i class="fas fa-minus"></i>
+                    </button>
+
+                    <button class="icon-button blue" id="btnAtras" title="Anterior" {% if page == 1 %}disabled{% endif %}>
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+
+                    <button class="icon-button blue" id="btnAdelante" title="Siguiente" {% if page >= total_pages %}disabled{% endif %}>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Seleccionar</th>
+                        <th>ID</th>
+                        <th>Proveedor</th>
+                        <th>Código Elemento</th>
+                        <th>Modelo</th>
+                        <th>Nombre</th>
+                        <th>Entradas</th>
+                        <th>Factura</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="remesasTableBody">
+                    {% for remesa in datos %}
+                    <tr>
+                        <td><input type="radio" name="selectRow" class="selectRow" data-id="{{ remesa.Id_Remesa }}"></td>
+                        <td>{{ remesa.Id_Remesa }}</td>
+                        <td>{{ remesa.proveedor.Id_Proveedor }} - {{ remesa.proveedor.Nombre_Prov }}</td>
+                        <td>{{ remesa.Código_Prod }} - {{ remesa.producto.Nombre_Prod }} </td>
+                        <td>{{ remesa.Modelo }}</td>
+                        <td>{{ remesa.Nombre }}</td>
+                        <td>{{ remesa.Num_Entradas }}</td>
+                        <td>{{ remesa.Factura }}</td>
+                        <td>{{ remesa.Fecha }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="9">No hay remesas disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
         </div>
-
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Seleccionar</th>
-                    <th>ID</th>
-                    <th>Proveedor</th>
-                    <th>Código Elemento</th>
-                    <th>Modelo</th>
-                    <th>Nombre</th>
-                    <th>Entradas</th>
-                    <th>Factura</th>
-                    <th>Fecha</th>
-                </tr>
-            </thead>
-            <tbody id="remesasTableBody">
-                {% for remesa in datos %}
-                <tr>
-                    <td><input type="radio" name="selectRow" class="selectRow" data-id="{{ remesa.Id_Remesa }}"></td>
-                    <td>{{ remesa.Id_Remesa }}</td>
-                    <td>{{ remesa.proveedor.Id_Proveedor }} - {{ remesa.proveedor.Nombre_Prov }}</td>
-                    <td>{{ remesa.Código_Prod }} - {{ remesa.producto.Nombre_Prod }} </td>
-                    <td>{{ remesa.Modelo }}</td>
-                    <td>{{ remesa.Nombre }}</td>
-                    <td>{{ remesa.Num_Entradas }}</td>
-                    <td>{{ remesa.Factura }}</td>
-                    <td>{{ remesa.Fecha }}</td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="9">No hay remesas disponibles.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </main>
 
-    <a href="{{ url_for('bienvenida') }}">Regresar</a>
 
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script>

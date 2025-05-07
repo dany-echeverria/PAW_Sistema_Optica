@@ -22,6 +22,7 @@ body {
     border-radius: 0 15px 15px 0;
     height: 100%;
     transition: width .3s ease ;
+
 }
 .nav-logo {
     display: flex;
@@ -176,4 +177,9 @@ body {
 }
 .navbar-hidden .nav-buttons .nav-btn .nav-btn-texto {
     opacity: 0;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 10;
 }

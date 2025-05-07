@@ -38,23 +38,49 @@
     <main class="main-container">
         <h1 class="page-title">Tabla de Pacientes</h1>
 
-        <!-- Búsqueda avanzada -->
+        <div class="barAndTableContainer">
+            <!-- Búsqueda avanzada -->
         <div class="search-container">
             <select id="campoBusqueda">
                 <option value="Nombre_Pa">Nombre</option>
                 <option value="Apellidos">Apellidos</option>
                 <option value="Correo">Correo</option>
             </select>
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button id="btnBuscar" class="icon-button blue">Buscar</button>
-            <a href="{{ url_for('verinformacion.ver_pacientes') }}"><button class="icon-button gray">Ver Todo</button></a>
 
-            <button class="icon-button yellow actualizar" title="Actualizar"><i class="fa fa-sync-alt"></i></button>
-            <button class="icon-button green" title="Agregar"><i class="fa fa-plus"></i></button>
-            <button class="icon-button red borrar" title="Borrar"><i class="fa fa-minus"></i></button>
+            <input type="text" id="searchInput" placeholder="Buscar..." class="searchInput">
 
-            <button class="icon-button blue" id="btnAtras" title="Anterior" {% if page == 1 %}disabled{% endif %}><i class="fa fa-arrow-left"></i></button>
-            <button class="icon-button blue" id="btnAdelante" title="Siguiente" {% if page >= total_pages %}disabled{% endif %}><i class="fa fa-arrow-right"></i></button>
+            <div class="buttons-tools">
+                <button id="btnBuscar" class="icon-button blue">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <a href="{{ url_for('verinformacion.ver_pacientes') }}">
+                    <button class="icon-button gray">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </a>
+
+                <button class="icon-button yellow actualizar" title="Actualizar">
+                    <i class="fa fa-sync-alt"></i>
+                </button>
+
+                <button class="icon-button green" title="Agregar">
+                    <i class="fa fa-plus"></i>
+                </button>
+
+                <button class="icon-button red borrar" title="Borrar">
+                    <i class="fa fa-minus"></i>
+                </button>
+
+                <button class="icon-button blue" id="btnAtras" title="Anterior" {% if page == 1 %}disabled{% endif %}>
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+
+                <button class="icon-button blue" id="btnAdelante" title="Siguiente" {% if page >= total_pages %}disabled{% endif %}>
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>
+            
         </div>
 
         <!-- Tabla -->
@@ -86,10 +112,12 @@
                 {% endfor %}
             </tbody>
         </table>
+        </div>
+        
     </main>
 
-    <a href="{{ url_for('bienvenida') }}">Regresar</a>
 
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let selectedRow = null;

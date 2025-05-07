@@ -40,59 +40,69 @@
         <h1 class="page-title">Tabla de Inventarios</h1>
 
         <!-- Búsqueda avanzada -->
-        <div class="search-container">
-            <select id="campoBusqueda">
-                <option value="Nombre_Prod">Nombre del Producto</option>
-                <option value="Modelo">Modelo</option>
-                <option value="Materiales">Materiales</option>
-                <option value="Id_Proveedor">ID del Proveedor</option>
-            </select>
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button id="btnBuscar" class="icon-button blue">Buscar</button>
-            <a href="{{ url_for('verinformacion.ver_inventarios') }}"><button class="icon-button gray">Ver Todo</button></a>
+        <div class="barAndTableContainer">
+            <div class="search-container">
+                <select id="campoBusqueda">
+                    <option value="Nombre_Prod">Nombre del Producto</option>
+                    <option value="Modelo">Modelo</option>
+                    <option value="Materiales">Materiales</option>
+                    <option value="Id_Proveedor">ID del Proveedor</option>
+                </select>
 
-            <a href="{{ url_for('create.agregar_inventario') }}">
-                <button class="icon-button green" title="Agregar"><i class="fa fa-plus"></i></button>
-            </a>
-            <button class="icon-button yellow actualizar"><i class="fa fa-sync-alt"></i></button>
-            <button class="icon-button red borrar"><i class="fa fa-minus"></i></button>
-            <button class="icon-button blue" id="btnAtras" {% if page == 1 %}disabled{% endif %}><i class="fa fa-arrow-left"></i></button>
-            <button class="icon-button blue" id="btnAdelante" {% if page >= total_pages %}disabled{% endif %}><i class="fa fa-arrow-right"></i></button>
+                <input type="text" id="searchInput" placeholder="Buscar..." class="searchInput">
+
+                <div class="buttons-tools">
+                    <button id="btnBuscar" class="icon-button blue">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <a href="{{ url_for('verinformacion.ver_inventarios') }}"><button class="icon-button gray">
+                        <i class="fa-solid fa-eye"></i>
+                    </button></a>
+        
+                    <a href="{{ url_for('create.agregar_inventario') }}">
+                        <button class="icon-button green" title="Agregar"><i class="fa fa-plus"></i></button>
+                    </a>
+                    <button class="icon-button yellow actualizar"><i class="fa fa-sync-alt"></i></button>
+                    <button class="icon-button red borrar"><i class="fa fa-minus"></i></button>
+                    <button class="icon-button blue" id="btnAtras" {% if page == 1 %}disabled{% endif %}><i class="fa fa-arrow-left"></i></button>
+                    <button class="icon-button blue" id="btnAdelante" {% if page >= total_pages %}disabled{% endif %}><i class="fa fa-arrow-right"></i></button>
+                </div>
+                
+            </div>
+    
+            <table>
+                <thead>
+                    <tr>
+                        <th>Seleccionar</th>
+                        <th>Código Producto</th>
+                        <th>Id del Proveedor</th>
+                        <th>Nombre Producto</th>
+                        <th>Precio</th>
+                        <th>Modelo</th>
+                        <th>Cantidad</th>
+                        <th>Materiales</th>
+                    </tr>
+                </thead>
+                <tbody id="inventariosTableBody">
+                    {% for inventario in datos %}
+                    <tr>
+                        <td><input type="radio" name="selectRow" class="selectRow" data-codigo="{{ inventario.Código_Prod }}"></td>
+                        <td>{{ inventario.Código_Prod }}</td>
+                        <td>{{ inventario.Id_Proveedor }} - {{ inventario.proveedor.Nombre_Prov }}</td>
+                        <td>{{ inventario.Nombre_Prod }}</td>
+                        <td>{{ inventario.Precio }}</td>
+                        <td>{{ inventario.Modelo }}</td>
+                        <td>{{ inventario.Cantidad }}</td>
+                        <td>{{ inventario.Materiales }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="8">No hay inventarios disponibles.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Seleccionar</th>
-                    <th>Código Producto</th>
-                    <th>Id del Proveedor</th>
-                    <th>Nombre Producto</th>
-                    <th>Precio</th>
-                    <th>Modelo</th>
-                    <th>Cantidad</th>
-                    <th>Materiales</th>
-                </tr>
-            </thead>
-            <tbody id="inventariosTableBody">
-                {% for inventario in datos %}
-                <tr>
-                    <td><input type="radio" name="selectRow" class="selectRow" data-codigo="{{ inventario.Código_Prod }}"></td>
-                    <td>{{ inventario.Código_Prod }}</td>
-                    <td>{{ inventario.Id_Proveedor }} - {{ inventario.proveedor.Nombre_Prov }}</td>
-                    <td>{{ inventario.Nombre_Prod }}</td>
-                    <td>{{ inventario.Precio }}</td>
-                    <td>{{ inventario.Modelo }}</td>
-                    <td>{{ inventario.Cantidad }}</td>
-                    <td>{{ inventario.Materiales }}</td>
-                </tr>
-                {% else %}
-                <tr><td colspan="8">No hay inventarios disponibles.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </main>
 
-    <a href="{{ url_for('bienvenida') }}">Regresar</a>
 
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script>

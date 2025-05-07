@@ -6,10 +6,18 @@ body {
 }
 
 .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-grow: 1;
     padding: 30px;
     text-align: center;
     overflow-x: auto;
+}
+.barAndTableContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .page-title {
@@ -21,6 +29,21 @@ body {
 }
 
 /* Estilo barra de búsqueda y botones */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 95%;
+}
+#campoBusqueda {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #102d7a;
+    background-color: #b3c7ff;
+    border-radius: 5px;
+    margin: 0 4px;
+}
 .input-container {
     display: flex;
     align-items: center;
@@ -30,34 +53,33 @@ body {
     margin-bottom: 30px;
 }
 
-.search-input {
+
+.searchInput {
     padding: 10px 15px;
     border-radius: 20px;
     border: 2px solid white;
     outline: none;
-    width: 50%;
+    width: 100%;
     background-color: transparent;
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    height: 50px;
+    height: 40px;
 }
-
-.search-button {
-    background-color: #26489C;
-    border: none;
-    border-radius: 13px;
-    cursor: pointer;
-    padding: 10px;
-    margin-left: -30px;
-}
-
-.search-button i {
+.searchInput::placeholder {
     color: white;
-    font-size: 14px;
+}
+.buttons-tools {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
 }
 
-/* Botones redondos */
+.search-container a{
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+}
 .icon-button {
     width: 50px;
     height: 50px;
@@ -69,16 +91,17 @@ body {
     align-items: center;
     transition: transform 0.2s ease;
 }
-
 .icon-button i {
     color: white;
     font-size: 18px;
 }
 
+
 .icon-button.yellow { background-color: #ffeb3b; color: #26489C; }
 .icon-button.green  { background-color: #4caf50; }
 .icon-button.red    { background-color: #f44336; }
 .icon-button.blue   { background-color: #2196f3; }
+.icon-button.gray { background-color: #929292;}
 
 .icon-button:hover {
     transform: scale(1.1);
@@ -89,9 +112,8 @@ body {
     cursor: not-allowed;
 }
 
-/* Tabla de pacientes */
 table {
-    width: 90%;
+    width: 96%;
     margin: auto;
     border-collapse: collapse;
     background-color: white;

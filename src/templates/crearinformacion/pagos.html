@@ -32,6 +32,7 @@
                     <select name="Id_Venta" id="Id_Venta" required onchange="actualizarSaldo()">
                         <option value="">Selecciona una venta</option>
                     </select>
+                    <i class="fa-solid fa-money-bill"></i>
                 </div>
             </div>
 
@@ -61,19 +62,20 @@
 
             <div id="mensajeCambio" style="color: red; font-weight: bold;"></div>
 
-
-            <div class="form-group">
-                <label for="Fecha">Fecha:</label>
-                <div class="input-container">
-                    <input type="date" name="Fecha" required>
-                    <i class="fa-solid fa-calendar-days"></i>
+            <div class="inputs-finales">
+                <div class="form-group fecha">
+                    <label for="Fecha" class="label-fecha">Fecha:</label>
+                    <div class="input-container input-fecha">
+                        <input type="date" name="Fecha" required>
+                    </div>
                 </div>
+    
+                <label class="lbl-prodEntregado">
+                    <input type="checkbox" name="ProductoEntregado" value="1" class="chbox-prodEntregado">
+                    Producto entregado
+                </label>
             </div>
-
-            <label>
-                <input type="checkbox" name="ProductoEntregado" value="1">
-                Producto entregado
-            </label>
+            
             <br>
 
             <div class="botones-accion">

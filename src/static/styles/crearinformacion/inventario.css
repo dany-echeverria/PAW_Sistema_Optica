@@ -38,26 +38,59 @@ label {
     width: 90%;
     margin: auto;
 }
-input, select {
+input {
     width: 100%;
     padding: 10px;
-    padding-right: 40px;
+    padding-right: 40px;  /* Espacio para el icono */
     border: 2px solid white;
     border-radius: 20px;
     background: transparent;
     color: white;
     font-size: 16px;
     outline: none;
-    text-align: center;
+    text-align: left;
+    box-sizing: border-box;
+}
+input::placeholder {
+    color: #fff;
+}
+select{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px;  /* Espacio para el icono */
+    border: 2px solid white;
+    color: #fff;
+    background-color: #28469c;
+    border-radius: 20px;
+    font-size: 16px;
+    outline: none;
+    text-align: left;
+    appearance: none; /* importante para quitar estilo nativo en select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .input-container i {
     position: absolute;
-    right: -40px;
+    right: 12px; /* Coloca el ícono a la derecha */
     top: 50%;
     transform: translateY(-50%);
-    color: white;
-    font-size: 17px;
+    color: white; /* Color del ícono */
+    font-size: 17px; /* Ajusta el tamaño del ícono */
+    height: 20px;
+    width: 20px;
+}
+.input-container i::after{
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #fff;
+
 }
 
 button {
