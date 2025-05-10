@@ -21,7 +21,7 @@
                 <h2 class="nav-titulo2">Franklin</h2>
             </span>
         </div>
-
+ 
         <ul class="nav-buttons">
             <li class="nav-btn btn-proveedores"><a href="{{ url_for('verinformacion.ver_proveedores') }}"><i class="fa-solid fa-truck"></i><span class="nav-btn-texto">Proveedores</span></a></li>
             <li class="nav-btn btn-remesas"><a href="{{ url_for('verinformacion.ver_remesas') }}"><i class="fa-solid fa-coins"></i><span class="nav-btn-texto">Remesas</span></a></li>
@@ -31,7 +31,7 @@
             <li class="nav-btn btn-pagos"><a href="{{ url_for('verinformacion.ver_pagos') }}"><i class="fa-solid fa-cash-register"></i><span class="nav-btn-texto">Pagos</span></a></li>
         </ul>
 
-        <a href="{{ url_for('auth.login') }}">
+        <a href="{{ url_for('auth.login') }}" class="link-cerrarSesion">
             <button class="btn-cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></button>
         </a>
     </nav>

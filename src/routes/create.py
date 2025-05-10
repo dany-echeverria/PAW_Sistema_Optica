@@ -156,8 +156,10 @@ def agregar_venta():
     # Obtener la lista de pacientes desde la base de datos
     pacientes = db.session.query(Paciente).all()  
     inventarios = Inventario.query.all()
-    inventarios = Inventario.query.all()
-    return render_template('crearinformacion/ventas.html', pacientes=pacientes, inventarios=inventarios)
+    
+    invSerializado = [{"Nombre_Prod": i.Nombre_Prod, "Precio": i.Precio} for i in inventarios]
+    
+    return render_template('crearinformacion/ventas.html', pacientes=pacientes, inventarios=inventarios, invSerializado = invSerializado)
 
 
 

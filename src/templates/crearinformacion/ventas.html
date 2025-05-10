@@ -11,7 +11,7 @@
         <h1 class="page-title">Ingresar Venta</h1>
         <form method="POST">
         
-            <div class="inputs">
+            <div class="inputs" id="inputsContainer">
                 <!-- Buscar paciente -->
                 <label for="buscar_paciente">Buscar Paciente:</label>
                 <div class="input-container">
@@ -46,7 +46,7 @@
                                     </option>
                                 {% endfor %}
                             </select>
-                            <button  class="btn-eliminarTratamiento" onclick="eliminarTratamiento(this)" title="Eliminar tratamiento">
+                            <button  class="btn-eliminarTratamiento" onclick="eliminarTratamientosContainer()" title="Eliminar tratamiento">
                                 <i class="fa-solid fa-trash icon-trash"></i>
                             </button>
                         </div>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 
-                <button type="button" onclick="agregarTratamiento()" class="btn-agregarTratamiento">Agregar tratamiento</button><br><br>
+                <button id="btnAgregarTratamiento" type="button" onclick="agregarTratamiento()" class="btn-agregarTratamiento">Agregar tratamiento</button><br><br>
 
                 <label for="observaciones">Observaciones:</label>
                 <div class="input-container">
@@ -141,30 +141,87 @@
                 options[i].style.display = texto.includes(input) ? "" : "none";
             }
         }
-
+        
         function agregarTratamiento() {
             const container = document.getElementById("tratamientosContainer");
+            
+            if (!container){
+                const inputsContainer = document.getElementById("inputsContainer");
+                const tratamientosContainer = document.createElement("div");
+                const btnAgregarTratamiento = document.getElementById("btnAgregarTratamiento");
+
+                tratamientosContainer.id="tratamientosContainer";
+                inputsContainer.insertBefore(tratamientosContainer,btnAgregarTratamiento);
+            }
+
+            const contenedor = document.getElementById("tratamientosContainer");
+
+            const label = document.createElement("label");
+            label.for = "Tratamiento"
+            label.innerHTML = "Tratamiento (producto):";
+
             const div = document.createElement("div");
             div.className = "input-container tratamiento-item tratamiento-extra";
-            const select = document.querySelector(".tratamiento").cloneNode(true);
-            select.addEventListener("change", actualizarAdeudo);
+            
+            // Crear el <select>
+            const select = document.createElement("select");
+            select.className = "tratamiento";
+            select.name = "Tratamiento";
+            select.required = true;
+            select.setAttribute("onchange", "actualizarAdeudo()");
+
+            // Crear la opción por defecto
+            const opcionDefecto = document.createElement("option");
+            opcionDefecto.value = "";
+            opcionDefecto.disabled = true;
+            opcionDefecto.selected = true;
+            opcionDefecto.textContent = "-- Selecciona una opción --";
+            select.appendChild(opcionDefecto);
+            
+            const invTratamientos = JSON.parse('{{ invSerializado | tojson | safe }}');
+
+            // Agregar opciones dinámicamente
+            invTratamientos.forEach(producto => {
+            const opcion = document.createElement("option");
+            opcion.value = producto.Nombre_Prod;
+            opcion.setAttribute("data-precio", producto.Precio);
+            opcion.textContent = `${producto.Nombre_Prod} - $${producto.Precio}`;
+            select.appendChild(opcion);
+            });
 
             const btnEliminar = document.createElement("button");
             btnEliminar.type = "button";
-            btnEliminar.innerHTML = "<i class='fa-solid fa-minus icon-trash'></i>";
             btnEliminar.className = "btn-eliminarTratamientoExtra btn-eliminarTratamiento";
-            btnEliminar.onclick = function() {
-                eliminarTratamiento(this);
-            };
+
+            if(document.querySelectorAll("div.tratamiento-item").length === 0) {
+                btnEliminar.innerHTML = "<i class='fa-solid fa-trash icon-trash'></i>";
+                btnEliminar.onclick = function() {
+                    eliminarTratamientosContainer();
+                };
+            }
+            else {
+                btnEliminar.innerHTML = "<i class='fa-solid fa-minus icon-trash'></i>";
+                btnEliminar.onclick = function() {
+                    eliminarTratamiento(this);
+                };
+            }
+
 
             div.appendChild(select);
             div.appendChild(btnEliminar);
-            container.appendChild(div);
+            contenedor.appendChild(div);
+            if(document.querySelectorAll("div.tratamiento-item").length === 1) {
+                contenedor.insertBefore(label,div);
+            }
         }
 
         function eliminarTratamiento(button) {
             button.parentElement.remove();
             actualizarAdeudo();
+        }
+        function eliminarTratamientosContainer(){
+            let containerTratamientos = document.getElementById("tratamientosContainer");
+            containerTratamientos.remove();
         }
 
         function actualizarAdeudo() {

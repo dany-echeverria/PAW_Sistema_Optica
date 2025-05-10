@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for
+from flask import Flask, render_template, session, redirect, url_for, jsonify
 from db import db
 from config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS
 from routes.create import create_bp
@@ -26,10 +26,10 @@ db.init_app(app)
 def home():
     return redirect(url_for('auth.login'))
 
-@app.route('/bienvenida')
+@app.route('/ver/proveedores')
 def bienvenida():
     if 'usuario' in session:
-        return render_template('inicio.html')  # Página de bienvenida
+        return render_template('proveedores.html')  # Página de bienvenida
     else:
         return redirect(url_for('auth.login'))
 

@@ -43,21 +43,11 @@
                         <i class="fa-solid fa-lock icon-password"></i>
                     </div>
                 </div>
-                <div class="rememberMe-container">
-                    <input type="checkbox" class="rememberMe-checkbox">
-                    <p class="txtCheckbox">Recordarme</p>
-                </div>
             </div>
 
             <button type="submit" class="btnAcceder">Acceder</button>
 
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <p class="{{ category }}">{{ message }}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+            
         </form>
     </main>
 
