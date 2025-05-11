@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proveedores</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='resources/logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/inicio/navbar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/verinformacion/proveedores.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/all.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7f87e90d60.js" crossorigin="anonymous"></script>
 </head>
@@ -14,21 +16,45 @@
     <nav id="fullscreen-menu" class="navbar navbar-hidden">
         <div class="nav-logo">
             <span class="fondo-img-logo">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" class="nav-img-logo" alt="Logo">
+                <img src="{{ url_for('static', filename='resources/logo.png') }}" class="nav-img-logo" alt="Logo">
             </span>
             <span class="nav-titulo">
-                <h2 class="nav-titulo1">Ópticas</h2>
-                <h2 class="nav-titulo2">Franklin</h2>
+                <h2 class="nav-titulo1">Óptica</h2>
+                <h2 class="nav-titulo2">Sima</h2>
             </span>
         </div>
- 
+
         <ul class="nav-buttons">
-            <li class="nav-btn btn-proveedores"><a href="{{ url_for('verinformacion.ver_proveedores') }}"><i class="fa-solid fa-truck"></i><span class="nav-btn-texto">Proveedores</span></a></li>
-            <li class="nav-btn btn-remesas"><a href="{{ url_for('verinformacion.ver_remesas') }}"><i class="fa-solid fa-coins"></i><span class="nav-btn-texto">Remesas</span></a></li>
-            <li class="nav-btn btn-ventas"><a href="{{ url_for('verinformacion.ver_ventas') }}"><i class="fa-solid fa-money-bill-wave"></i><span class="nav-btn-texto">Ventas</span></a></li>
-            <li class="nav-btn btn-pacientes"><a href="{{ url_for('verinformacion.ver_pacientes') }}"><i class="fa-solid fa-users"></i><span class="nav-btn-texto">Pacientes</span></a></li>
-            <li class="nav-btn btn-inventario"><a href="{{ url_for('verinformacion.ver_inventarios') }}"><i class="fa-solid fa-boxes-stacked"></i><span class="nav-btn-texto">Inventario</span></a></li>
-            <li class="nav-btn btn-pagos"><a href="{{ url_for('verinformacion.ver_pagos') }}"><i class="fa-solid fa-cash-register"></i><span class="nav-btn-texto">Pagos</span></a></li>
+            <li class="nav-btn btn-proveedores">
+                <a href="{{ url_for('verinformacion.ver_proveedores') }}">
+                    <i class="fa-solid fa-truck"></i>
+                    <span class="nav-btn-texto">Proveedores</span>
+                </a></li>
+            <li class="nav-btn btn-remesas">
+                <a href="{{ url_for('verinformacion.ver_remesas') }}">
+                    <i class="fa-solid fa-coins"></i>
+                    <span class="nav-btn-texto">Remesas</span>
+                </a></li>
+            <li class="nav-btn btn-ventas">
+                <a href="{{ url_for('verinformacion.ver_ventas') }}">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <span class="nav-btn-texto">Ventas</span>
+                </a></li>
+            <li class="nav-btn btn-pacientes">
+                <a href="{{ url_for('verinformacion.ver_pacientes') }}">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="nav-btn-texto">Pacientes</span>
+                </a></li>
+            <li class="nav-btn btn-inventario">
+                <a href="{{ url_for('verinformacion.ver_inventarios') }}">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span class="nav-btn-texto">Inventario</span>
+                </a></li>
+            <li class="nav-btn btn-pagos">
+                <a href="{{ url_for('verinformacion.ver_pagos') }}">
+                    <i class="fa-solid fa-cash-register"></i>
+                    <span class="nav-btn-texto">Pagos</span>
+                </a></li>
         </ul>
 
         <a href="{{ url_for('auth.login') }}" class="link-cerrarSesion">

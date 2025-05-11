@@ -46,7 +46,8 @@ body {
     height: 1px;
 }
 .nav-img-logo {
-    width: 64px;
+    width: 48px;
+    height: 48px;
 }
 .fondo-img-logo {
     display: flex;
@@ -55,7 +56,8 @@ body {
     width: 42px;
     height: 42px;
     border-radius: 8px;
-    background-color: #BC534D;
+    background-color: #c47f7f;
+    border: 2px solid #BC534D;
     margin-left: 12px;
 }
 .nav-titulo {
@@ -73,6 +75,7 @@ body {
 }
 .nav-titulo2 {
     font-weight: 300;
+    text-transform: uppercase;
 }
 
 /* BUTTONS NAVBAR */

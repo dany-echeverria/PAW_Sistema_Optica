@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacientes</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='resources/logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/inicio/navbar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/verinformacion/paciente.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/all.min.css') }}">
     <script src="https://kit.fontawesome.com/7f87e90d60.js" crossorigin="anonymous"></script>
 </head>
 <body style="display: flex; height: 100vh;">
@@ -13,11 +15,11 @@
     <nav id="fullscreen-menu" class="navbar navbar-hidden">
         <div class="nav-logo">
             <span class="fondo-img-logo">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" class="nav-img-logo" alt="Logo">
+                <img src="{{ url_for('static', filename='resources/logo.png') }}" class="nav-img-logo" alt="Logo">
             </span>
             <span class="nav-titulo">
-                <h2 class="nav-titulo1">Ópticas</h2>
-                <h2 class="nav-titulo2">Franklin</h2>
+                <h2 class="nav-titulo1">Óptica</h2>
+                <h2 class="nav-titulo2">Sima</h2>
             </span>
         </div>
         
@@ -64,9 +66,12 @@
                     <i class="fa fa-sync-alt"></i>
                 </button>
 
-                <button class="icon-button green" title="Agregar">
-                    <i class="fa fa-plus"></i>
-                </button>
+                <a href="{{ url_for('create.agregar_paciente') }}">
+                    <button class="icon-button green" title="Agregar">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </a>
+                
 
                 <button class="icon-button red borrar" title="Borrar">
                     <i class="fa fa-minus"></i>
